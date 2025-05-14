@@ -4,6 +4,7 @@ import { toast } from "sonner";
 
 const GenerateIPButton = () => {
   const [walletBalance, setWalletBalance] = useState(0);
+  const [gasBalance, setGasBalance] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   // This function would be replaced with actual wallet integration
@@ -24,9 +25,27 @@ const GenerateIPButton = () => {
     }
   };
 
+  // Function to check if user has enough gas
+  const checkGasBalance = async () => {
+    try {
+      // In a real implementation, this would connect to the user's wallet
+      // and fetch the actual gas balance
+      
+      // Mock implementation - replace with actual wallet integration
+      const mockGasBalance = 0.001; // Set to a low value for testing
+      setGasBalance(mockGasBalance);
+      return mockGasBalance;
+    } catch (error) {
+      console.error("Error checking gas balance:", error);
+      toast.error("Failed to check gas balance");
+      return 0;
+    }
+  };
+
   useEffect(() => {
-    // Check wallet balance when component mounts
+    // Check wallet balance and gas balance when component mounts
     checkWalletBalance();
+    checkGasBalance();
   }, []);
 
   const handleGenerateIP = async () => {
@@ -42,7 +61,17 @@ const GenerateIPButton = () => {
         return;
       }
       
-      // If balance is sufficient, proceed with IP generation
+      // Check if user has enough gas
+      const gas = await checkGasBalance();
+      const requiredGas = 0.005; // Set the required gas amount
+      
+      if (gas < requiredGas) {
+        toast.error(`You need at least ${requiredGas} ETH for gas to complete the mint`);
+        setIsLoading(false);
+        return;
+      }
+      
+      // If balance and gas are sufficient, proceed with IP generation
       // This would be replaced with actual IP generation logic
       
       // Mock successful generation
@@ -59,7 +88,8 @@ const GenerateIPButton = () => {
   };
 
   // Determine if the button should be disabled
-  const isDisabled = walletBalance < 0.01;
+  const requiredGas = 0.005; // Same value as in handleGenerateIP
+  const isDisabled = walletBalance < 0.01 || gasBalance < requiredGas;
 
   return (
     <div className="w-full max-w-md mx-auto mt-6 mb-4">
@@ -70,17 +100,21 @@ const GenerateIPButton = () => {
       >
         {isLoading ? "Generating..." : "Generate your IP"}
       </Button>
-      {isDisabled && (
+      {walletBalance < 0.01 && (
         <p className="text-sm text-red-500 mt-2 text-center">
           You need at least 0.01 CAMP tokens to generate your IP
         </p>
       )}
+      {gasBalance < requiredGas && (
+        <p className="text-sm text-red-500 mt-2 text-center">
+          You need at least {requiredGas} ETH for gas to complete the mint
+        </p>
+      )}
       <p className="text-sm text-gray-500 mt-2 text-center">
-        Current balance: {walletBalance} CAMP
+        Current balance: {walletBalance} CAMP | Gas: {gasBalance} ETH
       </p>
     </div>
   );
 };
 
 export default GenerateIPButton;
-
