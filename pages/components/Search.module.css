@@ -1,0 +1,260 @@
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.searchBoxRoot {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBoxForm {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  position: relative;
+}
+
+.searchBoxInput {
+  font-size: 20px;
+  padding: 12px 24px;
+  width: 100%;
+  border-radius: 30px;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.searchBoxContainer {
+  width: 80%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 3px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #ff7300, #8255dd, #8255dd, #ff7300);
+  background-size: 400% 400%;
+}
+
+.searchBoxInput:focus {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.searchBoxContainer:focus-within {
+  animation: gradientAnimation 4s ease infinite;
+}
+
+.searchBarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.spinHover {
+  transition: transform 0.5s;
+  display: inline-block;
+}
+
+.spinHover:hover {
+  transform: rotate(360deg);
+}
+
+.instanceSwitcher {
+  position: relative;
+  margin-left: 30px;
+}
+
+.switcherButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0px;
+}
+
+.instanceMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px; /* Added to give some space between the menu and the button */
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow */
+  z-index: 1000;
+}
+
+.instanceOption {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.instanceOption:hover {
+  background-color: #f0f0f0;
+}
+
+.searchBoxInput::placeholder {
+  color: #b3b3b3;
+  text-align: start;
+}
+
+.searchBoxInput.active::placeholder {
+  text-align: start;
+}
+
+.searchBoxSubmit {
+  display: none;
+}
+
+.searchBoxReset {
+  display: none;
+}
+
+.searchBoxLoadingIndicator {
+  display: none;
+}
+
+.searchBoxLoadingIcon {
+  display: none;
+}
+
+.logoLeft,
+.iconsRight {
+  display: flex;
+  align-items: center;
+}
+
+.logoLeft {
+  margin-left: 50px;
+}
+
+.iconsRight {
+  margin-right: 50px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .searchBoxInput {
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  }
+
+  .searchBoxInput:focus {
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+
+  .searchBoxInput::placeholder {
+    color: #999;
+  }
+
+  .instanceMenu {
+    background-color: #262527;
+    border: 0px solid #ff7b00;
+  }
+
+  .searchBoxContainer {
+    background: linear-gradient(45deg, #ff9933, #9966ff, #9966ff, #ff9933);
+  }
+}
+
+@media (max-width: 1400px) {
+  .searchBoxContainer {
+    width: 65%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .logoLeft {
+    margin-left: 15px;
+  }
+
+  .logoLeft img {
+    height: 70px;
+    width: 70px;
+  }
+
+  .iconsRight {
+    margin-right: 10px;
+  }
+
+  .iconsRight img {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchBoxInput {
+    font-size: 16px;
+    padding: 12px 12px;
+  }
+
+  .searchBoxContainer {
+    width: 60%;
+  }
+
+  .logoLeft {
+    margin-left: 20px;
+  }
+
+  .logoLeft img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .iconsRight {
+    margin-right: 5px;
+    height: 10px;
+  }
+
+  .iconsRight img {
+    height: 25px;
+    width: 25px;
+  }
+
+  .iconsRight img:first-child {
+    margin-right: 10px;
+  }
+
+  .instanceSwitcher {
+    position: relative;
+    margin-left: 20px;
+  }
+
+  .instanceMenu {
+    border: 1px solid #ddd;
+    padding: 0px;
+    width: 50px;
+    position: absolute;
+    right: -5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .searchBoxInput {
+    font-size: 12px;
+    padding: 12px 12px;
+  }
+
+  .searchBoxContainer {
+    width: 60%;
+  }
+}

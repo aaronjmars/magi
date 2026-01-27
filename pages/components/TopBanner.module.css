@@ -1,0 +1,41 @@
+.banner {
+  background-color: #e8791a;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+}
+
+.link {
+  color: white;
+}
+
+.closeButton {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    font-size: 12px;
+  }
+  .closeButton {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 400px) {
+  .banner {
+    font-size: 10px;
+  }
+}

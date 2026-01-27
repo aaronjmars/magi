@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import Search from "./components/Search";
+import SearchLeo from "./components/SearchLeo";
 import TopBanner from "./components/TopBanner";
 import Script from "next/script";
 
@@ -66,7 +66,7 @@ export default function Home() {
         />
         <div>
           <TopBanner />
-          <Search instance="farcaster" />
+          <SearchLeo />
         </div>
       </main>
     </>

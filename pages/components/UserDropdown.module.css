@@ -1,0 +1,124 @@
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.button {
+  background-color: #f9f9f9;
+  color: black;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownContent {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+}
+
+.userImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.userName {
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.signOutButton {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.signOutButton:hover {
+  background: linear-gradient(45deg, #ff7300, #8255dd, #8255dd, #ff7300);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.points {
+  position: relative;
+  cursor: help;
+  padding-bottom: 5px;
+}
+
+.points:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: 120px;
+  background-color: #ea781a;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  font-size: 12px;
+  position: absolute;
+  z-index: 1;
+  left: -50%;
+  margin-left: -60px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+@media (max-width: 1400px) {
+  .userImage {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .userImage {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .userName {
+    font-size: 0px;
+  }
+
+  .dropdownContent {
+    left: 0%;
+  }
+}
