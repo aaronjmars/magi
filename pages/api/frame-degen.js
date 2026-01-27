@@ -4,7 +4,7 @@ import { track } from "@vercel/analytics/server";
 let client = new Typesense.Client({
   nodes: [
     {
-      host: "abvwif8oj0e3r7kup-1.a1.typesense.net",
+      host: process.env.TYPESENSE_HOST,
       port: "443",
       protocol: "https",
     },
@@ -71,7 +71,7 @@ async function getImage() {
     const timestamp = Date.now();
     const hostedImageId = randomDocument.document.hosted_image_id;
     const imgurUrl = randomDocument.document.image_url;
-    const imageUrl = `https://imagedelivery.net/uzmvUOBJ09s_IX7VWocbxw/${hostedImageId}/square?${timestamp}`;
+    const imageUrl = `https://imagedelivery.net/${process.env.CLOUDFLARE_IMAGES_ID}/${hostedImageId}/square?${timestamp}`;
     console.log(`Fetched image : ${imageUrl}`);
     return { imageUrl, imgurUrl };
   }

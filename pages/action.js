@@ -24,7 +24,7 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://imagedelivery.net/uzmvUOBJ09s_IX7VWocbxw/1b366467-f4fa-44e4-88f1-90dd366e3900/public"
+          content={`https://imagedelivery.net/${process.env.NEXT_PUBLIC_CLOUDFLARE_IMAGES_ID}/1b366467-f4fa-44e4-88f1-90dd366e3900/public`}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -37,7 +37,7 @@ export default function Home() {
         />
         <meta
           name="twitter:image"
-          content="https://imagedelivery.net/uzmvUOBJ09s_IX7VWocbxw/1b366467-f4fa-44e4-88f1-90dd366e3900/public"
+          content={`https://imagedelivery.net/${process.env.NEXT_PUBLIC_CLOUDFLARE_IMAGES_ID}/1b366467-f4fa-44e4-88f1-90dd366e3900/public`}
         />
         <meta property="og:url" content="https://magi.lol/"></meta>
         <meta name="theme-color" content="#e8791a" />
@@ -46,7 +46,7 @@ export default function Home() {
         <Script
           src="https://eu.umami.is/script.js"
           strategy="afterInteractive"
-          data-website-id="4af2af3d-7819-46f3-b8a0-1f124f2cc89b"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           async
         />
         <div>

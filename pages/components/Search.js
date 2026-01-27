@@ -103,7 +103,7 @@ const Search = () => {
         server: {
           nodes: [
             {
-              host: "abvwif8oj0e3r7kup-1.a1.typesense.net",
+              host: process.env.NEXT_PUBLIC_TYPESENSE_HOST,
               port: "443",
               protocol: "https",
             },
