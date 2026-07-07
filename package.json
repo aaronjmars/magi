@@ -33,7 +33,11 @@
     "autoprefixer": "^10.5.2",
     "eslint": "^9",
     "eslint-config-next": "^16.2.10",
-    "postcss": "^8",
+    "postcss": "^8.5.10",
     "tailwindcss": "^4.3.2"
+  },
+  "overrides": {
+    "ws": "^8.21.0",
+    "postcss": "$postcss"
   }
 }
