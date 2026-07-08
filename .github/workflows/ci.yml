@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Placeholder values only. The production build constructs API clients
+      # (which validate that a key is *present*) but never makes real calls at
+      # build time, so these dummies are enough to compile. Real secrets live in
+      # the deploy environment, not in CI.
+      OPENAI_API_KEY: sk-ci-placeholder
+      TYPESENSE_HOST: dummy.typesense.net
+      TYPESENSE_API_KEY: dummy
+      NEXT_PUBLIC_TYPESENSE_HOST: dummy.typesense.net
+      NEXT_PUBLIC_TYPESENSE_API_SEARCH_ONLY: dummy
+      CLOUDFLARE_IMAGES_ID: dummy
+      NEXT_PUBLIC_CLOUDFLARE_IMAGES_ID: dummy
+      NEXT_PUBLIC_UMAMI_WEBSITE_ID: dummy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: npx next build
