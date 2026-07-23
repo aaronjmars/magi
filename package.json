@@ -38,6 +38,7 @@
   },
   "overrides": {
     "ws": "^8.21.0",
-    "postcss": "$postcss"
+    "postcss": "$postcss",
+    "sharp": "$sharp"
   }
 }
