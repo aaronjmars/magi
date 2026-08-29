@@ -82,3 +82,7 @@ pages/
     ├── ActionFC.js   # Farcaster action component
     └── ...
 ```
+
+---
+
+Built by [Aaron Elijah Mars](https://aaronjmars.com), founder of Aeon and MiroShark · [@aaronjmars](https://github.com/aaronjmars)
