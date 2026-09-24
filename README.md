@@ -20,7 +20,7 @@ AI-powered meme search engine for Farcaster.
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 22+
 - npm or yarn
 
 ### Installation

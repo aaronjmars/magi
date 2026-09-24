@@ -13,7 +13,6 @@
     "@neynar/nodejs-sdk": "^3.177.0",
     "@vercel/analytics": "^2.0.1",
     "crypto": "^1.0.1",
-    "dotenv": "^18.0.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "fetch": "^1.1.0",
     "masonic": "^4.1.0",
