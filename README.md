@@ -7,10 +7,15 @@ AI-powered meme search engine for Farcaster.
 - Search memes using AI-powered semantic search
 - Farcaster Frames integration for sharing memes
 - Multiple meme collections (Farcaster, Degen, Higher, Enjoy)
+- Farcaster composer action (`/action`) to search for a meme and attach it to the cast you are writing
+
+## How it works
+
+The web app is a search UI on top of a Typesense collection named `magi`. Each meme in the index has text fields (`image_text`, `cast_caption`, `image_type`, `image_character`, `image_object`, `image_content`, `image_color`) that the search box queries, and the images themselves are served from Cloudflare Images. The script that builds and fills the index is not part of this repo, so you need your own Typesense collection to run it.
 
 ## Tech Stack
 
-- **Framework:** Next.js 14
+- **Framework:** Next.js 16 (pages router), React 19
 - **Search:** Typesense
 - **Images:** Cloudflare Images
 - **Analytics:** Umami
@@ -27,7 +32,7 @@ AI-powered meme search engine for Farcaster.
 
 1. Clone the repository:
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/aaronjmars/magi.git
    cd magi
    ```
 
@@ -41,16 +46,17 @@ AI-powered meme search engine for Farcaster.
    cp .env.example .env.local
    ```
 
-4. Fill in your `.env.local` with your actual values:
-   ```
-   TYPESENSE_HOST=your-typesense-host
-   TYPESENSE_API_KEY=your-admin-key
-   NEXT_PUBLIC_TYPESENSE_HOST=your-typesense-host
-   NEXT_PUBLIC_TYPESENSE_API_SEARCH_ONLY=your-search-key
-   CLOUDFLARE_IMAGES_ID=your-cloudflare-id
-   NEXT_PUBLIC_CLOUDFLARE_IMAGES_ID=your-cloudflare-id
-   NEXT_PUBLIC_UMAMI_WEBSITE_ID=your-umami-id
-   ```
+4. Fill in your `.env.local`:
+
+   | Variable | Used for |
+   |---|---|
+   | `TYPESENSE_HOST` | Typesense host for the server-side frame routes |
+   | `TYPESENSE_API_KEY` | Typesense key for the frame routes (server only) |
+   | `NEXT_PUBLIC_TYPESENSE_HOST` | Typesense host for the browser search |
+   | `NEXT_PUBLIC_TYPESENSE_API_SEARCH_ONLY` | Search-only Typesense key (exposed to the browser) |
+   | `CLOUDFLARE_IMAGES_ID` | Cloudflare Images account hash for frame images |
+   | `NEXT_PUBLIC_CLOUDFLARE_IMAGES_ID` | Cloudflare Images account hash for the web app |
+   | `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Umami analytics site ID |
 
 ### Running the App
 
@@ -73,6 +79,7 @@ pages/
 ├── index.js          # Main search page
 ├── action.js         # Farcaster action page
 ├── api/
+│   ├── action.js     # Composer action handler (opens /action)
 │   ├── frame-farcaster.js
 │   ├── frame-degen.js
 │   ├── frame-higher.js
@@ -82,6 +89,8 @@ pages/
     ├── ActionFC.js   # Farcaster action component
     └── ...
 ```
+
+Frame and action URLs are hardcoded to `magi.lol` in `pages/api/` and the page meta tags. Change them if you deploy under another domain.
 
 ---
 
