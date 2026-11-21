@@ -5,9 +5,14 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       # Placeholder values only. The production build constructs API clients
       # (which validate that a key is *present*) but never makes real calls at
